@@ -1,102 +1,90 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Times New Roman', Times, serif;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+margin: 0;
+font-family: 'VT323', monospace;
 }
 
 body,
 .snake {
-    background-color:black ;
+background-color: #414141;
 }
 
-#hracie-pole {
-    border-radius: 100px;
-    display: grid;
-    grid-template-columns: repeat(30, 20px);
-    grid-template-rows: repeat(30, 20px);
-    margin: 5px;
+#game-board {
+border-radius: 100px;
+display: grid;
+grid-template-columns: repeat(30, 20px);
+grid-template-rows: repeat(30, 20px);
+margin: 5px;
 }
 
-.gborder-1 {
-    border: #3F007D solid 10px;
-    border-radius: 30px;
-    box-shadow: inset 0 0 0 10px #3F007D;
+.game-border-1 {
+border: #3F007D solid 10px;
+border-radius: 30px;
+box-shadow: inset 0 0 0 10px #3F007D;
 }
 
-.gborder-2 {
-    border: #7B2FAF solid 8px;
-    border-radius: 26px;
-    box-shadow: inset 0 0 0 10px #7B2FAF;
+.game-border-2 {
+border: #7B2FAF solid 8px;
+border-radius: 26px;
+box-shadow: inset 0 0 0 10px #7B2FAF;
 }
 
-.gborder-3 {
-    border: #AD7FFF solid 30px;
-    border-radius: 20px;
-    box-shadow: inset 0 0 0 5px #AD7FFF;
+.game-border-3 {
+border: #AD7FFF solid 30px;
+border-radius: 20px;
+box-shadow: inset 0 0 0 5px #AD7FFF;
 }
 
-#inštrukcie {
-    position: absolute;
-    top: 60%;
-    color: whitesmoke;
-    width: 300px;
-    text-align: center;
-    text-transform: capitalize;
-    padding: 30px;
-    margin: 0;
+#instruction-text {
+position: absolute;
+top: 60%;
+color: whitesmoke;
+width: 300px;
+text-align: center;
+text-transform: capitalize;
+padding: 30px;
+margin: 0;
 }
 
-.Celkove-skóre {
-    display: flex;
-    justify-content: space-between;
+.scores {
+display: flex;
+justify-content: space-between;
 }
 
-#Skóre {
-    color: white;
+#score {
+color: white;
 }
 
-#Skóre,
-#NajvyšieSkóre {
-    font-size: 40px;
-    font-weight: bolder;
-    margin: 10px 0;
+#score,
+#highScore {
+font-size: 40px;
+font-weight: bolder;
+margin: 10px 0;
 }
 
-#NajvyšieSkóre {
-    color: white;
-    display: none;
-
+#highScore {
+color: #d8ddca;
+display: none;
 }
 
-.corner-images {
-    position: relative;
-    height: 100%; /* or specify a fixed height */
+.game-border-3,
+#logo {
+background-color: #999;
 }
 
-.corner-images img {
-    position: absolute;
-    width: 200px; /* or specify a fixed width */
+.snake {
+border: #5a5a5a 1px dotted;
+background-color: #228B22;
 }
 
-.top-left {
-    top: 0;
-    left: 0;
+.food {
+background-color: #B22222;
+border: #8B0000 3px solid;
 }
 
-.top-right {
-    top: 0;
-    right: 0;
-}
-
-.bottom-left {
-    bottom: 0;
-    left: 0;
-}
-
-.bottom-right {
-    bottom: 0;
-    right: 0;
+#logo {
+position: absolute;
 }
