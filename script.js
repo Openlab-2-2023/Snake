@@ -4,8 +4,9 @@ const instructionText = document.getElementById('instruction-text');
 const logo = document.getElementById('logo');
 const score = document.getElementById('score');
 const highScoreText = document.getElementById('highScore');
+const pauseButton = document.getElementById('pause-button');
 
-// zadefinovanie premennych
+// Zadefinovanie premennych
 const gridSize = 30;
 let snake = [{ x: 10, y: 10 }];
 let food = generateFood();
@@ -14,6 +15,7 @@ let direction = 'right';
 let gameInterval;
 let gameSpeedDelay = 200;
 let gameStarted = false;
+let gamePaused = false;
 
 // mapa, snake, jedlo
 function draw() {
@@ -45,8 +47,6 @@ function setPosition(element, position) {
   element.style.gridRow = position.y;
 }
 
-
-
 // Draw food function
 function drawFood() {
   if (gameStarted) {
@@ -63,8 +63,10 @@ function generateFood() {
   return { x, y };
 }
 
-// Ovladanie snake
+// Ovladanie snake + pause button
 function move() {
+  if (gamePaused) return
+
   const head = { ...snake[0] };
   switch (direction) {
     case 'up':
@@ -99,8 +101,6 @@ function move() {
   }
 }
 
-
-
 // Funkcia pre začatie hry
 function startGame() {
   gameStarted = true; 
@@ -113,7 +113,7 @@ function startGame() {
   }, gameSpeedDelay);
 }
 
-
+// Funkcia pre spracovanie stlačenia klávesy
 function handleKeyPress(event) {
   if (
     (!gameStarted && event.code === 'Space') ||
@@ -138,8 +138,24 @@ function handleKeyPress(event) {
   }
 }
 
+// Pridanie event listenera pre spracovanie stlačenia klávesy
 document.addEventListener('keydown', handleKeyPress);
 
+// Pridanie event listenera pre spracovanie kliknutia na pause button
+pauseButton.addEventListener('click', togglePause);
+
+// Funkcia pre pauzu a obnovu hry
+function togglePause() {
+  if (gamePaused) {
+    gamePaused = false;
+    pauseButton.textContent = 'Pause';
+  } else {
+    gamePaused = true;
+    pauseButton.textContent = 'Resume';
+  }
+}
+
+// Zvýšenie rýchlosti hry
 function increaseSpeed() {
   //   console.log(gameSpeedDelay);
   if (gameSpeedDelay > 150) {
@@ -153,6 +169,7 @@ function increaseSpeed() {
   }
 }
 
+// Kontrola kolízie
 function checkCollision() {
   const head = snake[0];
 
@@ -167,6 +184,7 @@ function checkCollision() {
   }
 }
 
+// Resetovanie hry
 function resetGame() {
   updateHighScore();
   stopGame();
@@ -177,18 +195,20 @@ function resetGame() {
   updateScore();
 }
 
+// Aktualizácia skóre
 function updateScore() {
   const currentScore = snake.length - 1;
   score.textContent = currentScore.toString().padStart(3, '0');
 }
 
+// Zastavenie hry
 function stopGame() {
   clearInterval(gameInterval);
   gameStarted = false;
   instructionText.style.display = 'block';
-  
 }
 
+// Aktualizácia najvyššieho skóre
 function updateHighScore() {
   const currentScore = snake.length - 1;
   if (currentScore > highScore) {
@@ -197,3 +217,4 @@ function updateHighScore() {
   }
   highScoreText.style.display = 'block';
 }
+

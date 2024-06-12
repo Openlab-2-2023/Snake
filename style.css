@@ -87,4 +87,17 @@ border: #8B0000 3px solid;
 
 #logo {
 position: absolute;
+top: 30%;
+}
+
+#pause-button {
+    top: 8%;
+    padding: 10px 20px;
+    font-size: 26px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
 }
